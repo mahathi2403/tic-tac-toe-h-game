@@ -1,0 +1,30 @@
+import random
+def generate_puzzle():
+  alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+  missing_letter = random.choice(alphabet)
+  puzzle = [letter for letter in alphabet if letter != missing_letter]
+  random.shuffle(puzzle)
+  return puzzle, missing_letter
+def play_alphabet_puzzle():
+  score = 0
+  round_num = 1
+  print("=== welcome to the Alphabet Puzzle Game===")
+  while True:
+    print(f"\n---Round{round_num}---")
+    puzzle, missing = generate_puzzle()
+    print("Find the missing letter from this shuffled alphabet:")
+    print("".join(puzzle))
+    guess = input("Your guess:").strip().upper()
+    if guess == missing:
+      print("correct!")
+      score += 1
+    else:
+        print("Wrong! The correct answer was:{missing}")
+        print(f"Your current score:{score}")
+        again = input("Play another round?(y/n):").strip().lower()
+        if again !='y':
+          break
+        round_num += 1
+        print("\nGame over!Your final score:",score)
+# start the game
+play_alphabet_puzzle()
